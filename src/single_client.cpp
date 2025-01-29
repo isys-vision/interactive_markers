@@ -99,9 +99,8 @@ void SingleClient::process(const visualization_msgs::InteractiveMarkerUpdate::Co
     DBG_MSG( "%s: received keep-alive #%lu", server_id_.c_str(), msg->seq_num );
     if (last_update_seq_num_ != (uint64_t)-1 && msg->seq_num != last_update_seq_num_ )
     {
-      std::ostringstream s;
-      s << "Sequence number of update is out of order. Expected: " << last_update_seq_num_ << " Received: " << msg->seq_num;
-      ROS_ERROR(s);
+      //std::ostringstream s;
+      ROS_ERROR_STREAM("Sequence number of update is out of order. Expected: " << last_update_seq_num_ << " Received: " << msg->seq_num);
       //errorReset( s.str() );
       return;
     }
@@ -113,9 +112,8 @@ void SingleClient::process(const visualization_msgs::InteractiveMarkerUpdate::Co
     DBG_MSG( "%s: received update #%lu", server_id_.c_str(), msg->seq_num );
     if (last_update_seq_num_ != (uint64_t)-1 && msg->seq_num != last_update_seq_num_+1 )
     {
-      std::ostringstream s;
-      s << "Sequence number of update is out of order. Expected: " << last_update_seq_num_+1 << " Received: " << msg->seq_num;
-      ROS_ERROR(s);
+      //std::ostringstream s;
+      ROS_ERROR_STREAM("Sequence number of update is out of order. Expected: " << last_update_seq_num_+1 << " Received: " << msg->seq_num);
       //errorReset( s.str() );
       return;
     }
