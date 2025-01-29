@@ -101,7 +101,8 @@ void SingleClient::process(const visualization_msgs::InteractiveMarkerUpdate::Co
     {
       std::ostringstream s;
       s << "Sequence number of update is out of order. Expected: " << last_update_seq_num_ << " Received: " << msg->seq_num;
-      errorReset( s.str() );
+      ROS_ERROR(s);
+      //errorReset( s.str() );
       return;
     }
     last_update_seq_num_ = msg->seq_num;
@@ -114,7 +115,8 @@ void SingleClient::process(const visualization_msgs::InteractiveMarkerUpdate::Co
     {
       std::ostringstream s;
       s << "Sequence number of update is out of order. Expected: " << last_update_seq_num_+1 << " Received: " << msg->seq_num;
-      errorReset( s.str() );
+      ROS_ERROR(s);
+      //errorReset( s.str() );
       return;
     }
     last_update_seq_num_ = msg->seq_num;
